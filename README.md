@@ -35,6 +35,58 @@ You can modify these parameters to match your institution's:
 - Available resources
 - Scheduling needs
 
+## GENETIC ALGORITHM TIMETABLE GENERATOR
+
+**CORE COMPONENTS**:
+
+1. **INITIALIZATION**:
+   - Creates population of random valid timetables
+   - Each chromosome is a 3D structure: [days][time_slots][classrooms]
+   - Tracks subject hours and professor assignments
+
+2. **FITNESS FUNCTION**:
+   - Evaluates timetable quality using penalty system:
+     * Subject hours fulfillment (4hrs/week per subject)
+     * Professor workload balance
+     * Classroom utilization
+     * Division schedule constraints
+     * Consecutive hours avoidance
+   - Lower penalty = Better timetable
+
+3. **GENETIC OPERATORS**:
+   - Selection: Tournament selection with elitism (keeps top 10%)
+   - Crossover: Swaps entire days between parents
+   - Mutation: Swaps random class assignments
+   - Repair: Fixes invalid schedules by filling missing hours
+
+4. **EXECUTION FLOW**:
+   - Initial population → Fitness evaluation → Selection →
+   - Crossover/Mutation → New generation →
+   - Repeat for N generations →
+   - Return best timetable
+
+**KEY PARAMETERS (tunable):**
+- Population size: 300
+- Generations: 400
+- Crossover rate: 0.9
+- Mutation rate: 0.12
+- Subject hours required: 4/week
+
+**OUTPUT FEATURES:**
+1. Complete timetable view (all divisions)
+2. Individual division timetables
+3. Detailed statistics:
+   - Professor workload analysis
+   - Subject coverage per division
+   - Room utilization
+   - Fitness score
+
+**USAGE INSTRUCTIONS:**
+1. Modify input data as needed (years, subjects, professors)
+2. Adjust GA parameters for different problem sizes
+3. Run main() to generate optimized timetable
+4. View printed output or process returned schedule object
+
 
 ## Requirements
 
